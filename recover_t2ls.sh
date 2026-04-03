@@ -8,7 +8,7 @@
 
 # --- Configuration ---
 Subjlist="306 310"                         # Array of Subject IDs to recover
-BASE_PATH="/path/to/your/project" # Full path to the project root
+BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
 
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
 LOG_FILE="recovery_t2ls_${TIMESTAMP}.log"
