@@ -56,6 +56,12 @@ While `mri_synthstrip` provides excellent brain extraction, standard thresholdin
 2. **Statistical Refinement**: Applying a 2.576 SD (99% CI) threshold to objectively fine-tune the mask boundaries.
 3. **Optimized Surface Preservation**: Specifically tuned to prevent unintended over-stripping of the cortical ribbon, ensuring the integrity of the brain surface for subsequent analysis.
 
+### 📊 Visual Proof: Precision & Surface Protection
+The following overlay demonstrates the significant difference in brain extraction precision.
+
+![HSS Method Comparison](./images/comparison.jpg)
+*Background: T1w_acpc_dc_restore | Red: Standard FSL-BET | Blue: t2log-strip (HSS Method v3.11)*
+
 
 ## 🛠 Prerequisites
 Ensure the following tools are installed and accessible in your `$PATH`:
