@@ -9,8 +9,8 @@
 
 
 # --- Configuration ---
-Subjlist="306 310"                         # Array of Subject IDs to process
-BASE_PATH="/home/monster/scratch/dl26/t2ls" # Full path to the project root
+Subjlist="001 002 003"                         # Array of Subject IDs to process
+BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
 
 
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
