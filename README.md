@@ -17,7 +17,7 @@ This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
 ## ⚙️ Configuration & Usage
 Edit `t2log-strip.sh` to match your environment:
 ```bash
-Subjlist="306 310"                # Subject IDs
+Subjlist="001 002 003"            # Subject IDs
 BASE_PATH="/path/to/project"      # Project root
 ```
 
