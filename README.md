@@ -67,6 +67,7 @@ The following overlay demonstrates the significant difference in brain extractio
 - **Blue (t2log-strip)**: Highlights previously over-stripped brain regions that have been restored for a more complete extraction.
 - **Purple**: Represents the overlap where both methods align.
 
+
 ## 🛠 Prerequisites
 Ensure the following tools are installed and accessible in your `$PATH`:
 - **FSL 6.0.7** (FMRIB Software Library)
