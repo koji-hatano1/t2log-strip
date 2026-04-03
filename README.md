@@ -15,6 +15,7 @@ The standard **HCP Pipeline** is renowned for its robust "two-stage" brain extra
 
 - **Complementary Precision**: Rather than replacing the HCP's inherent reliability, `t2log-strip` serves as an elite pre-processing option. By providing FreeSurfer with the cleanest possible input, it minimizes the risk of segmentation errors and maximizes the fidelity of the final cortical ribbon.
 - **Surface Protection**: Specifically tailored for studies where preserving every millimeter of the cortical surface is critical, ensuring the most accurate surface reconstruction possible within the HCP framework.
+- **Implementation Note**: To successfully apply this mask, the FreeSurfer process requires appropriate tuning to fully leverage the enhanced input.
 
 ## 📂 HCP Pipeline Integration & Directory Structure
 This tool is designed to be integrated into the HCP Pipeline (specifically following the initial steps of `PreFreeSurferPipeline.sh`).
