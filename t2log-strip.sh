@@ -9,7 +9,7 @@
 
 
 # --- Configuration ---
-Subjlist="001 002 003"                         # Array of Subject IDs to process
+Subjlist="001 002 003"                     # Array of Subject IDs to process
 BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
 
 
