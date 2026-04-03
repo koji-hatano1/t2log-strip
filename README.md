@@ -17,3 +17,25 @@ To use this script, edit the following lines in `t2log-strip.sh` to match your e
 # --- Configuration ---
 Subjlist="306 310"                         # Array of Subject IDs to process
 BASE_PATH="/path/to/your/project"          # Full path to the project root
+
+## 📊 Summary Output (CSV)
+For every session, the script generates a comprehensive CSV report:
+- **Initial-Voxels**: Voxel count before thresholding.
+- **Dropped-Voxels**: Exact number of voxels removed by the Hatano Method.
+- **Dropped-Percent**: Percentage of removal (Quality Control metric).
+- **Final-Mask-Size**: Resulting mask volume in voxels.
+
+## 🔬 Methodology: The Hatano Method
+Traditional thresholding often fails at the brain-CSF interface. The **Hatano Method** improves this by:
+1. **Log-Transformation**: Converting voxel intensities into log-space to normalize the distribution.
+2. **Adaptive Thresholding**: Applying a 2.576 SD (99% Confidence Interval) threshold.
+3. **Surface Protection**: Specifically tuned to prevent over-stripping of the cortical ribbon.
+
+## 🛠 Prerequisites
+Ensure the following tools are installed and accessible in your `$PATH`:
+- **FSL** (FMRIB Software Library)
+- **FreeSurfer** (specifically `mri_synthstrip`)
+- **bc** (GNU arbitrary precision calculator)
+
+---
+Developed by Koji Hatano. Precision brain masking for professional neuroimaging workflows.
