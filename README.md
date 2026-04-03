@@ -1,7 +1,5 @@
 # t2log-strip 🧠
-[![Version](https://shields.io)](#)
-[![Method](https://shields.io)](#)
-[![License](https://shields.io)](#)
+Version 3.11(04.03.2026)
 
 A high-precision brain masking tool implementing **The Hatano Method (v3.11)**.
 
@@ -9,6 +7,11 @@ A high-precision brain masking tool implementing **The Hatano Method (v3.11)**.
 **t2log-strip** is an advanced brain masking utility that combines the robust extraction of `mri_synthstrip` with a specialized **Log-Normal Adaptive Thresholding** strategy. 
 
 Developed as **The Hatano Method**, this approach is specifically designed to maximize brain surface protection, ensuring that delicate cortical boundaries are preserved while effectively removing non-brain tissue.
+
+## 📂 HCP Pipeline Integration & Directory Structure
+This tool is designed to be integrated into the **HCP Pipeline** (specifically after `PreFreeSurferPipeline.sh`). 
+- **Compatibility**: Assumes the standard HCP directory structure.
+- **Integration**: When using the generated masks and brain-extracted images in subsequent pipeline stages (e.g., FreeSurfer or PostFreeSurfer), ensure you correctly point to these updated files in your script configurations.
 
 ## ⚙️ Configuration
 To use this script, edit the following lines in `t2log-strip.sh` to match your environment:
