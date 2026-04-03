@@ -29,6 +29,16 @@ For every session, the script generates a comprehensive CSV report:
 - **Dropped-Percent**: Percentage of removal (Quality Control metric).
 - **Final-Mask-Size**: Resulting mask volume in voxels.
 
+## 🔄 Recovery & Undo Process
+If you need to revert the changes or test different threshold parameters, use the provided recovery script:
+
+```bash
+chmod +x recover_t2ls.sh
+./recover_t2ls.sh
+```
+
+Note: This script restores the original files from the *_bet.nii.gz backups created during the initial run. It is highly recommended to run this recovery script before re-running t2log-strip.sh with different settings to ensure a clean starting point.
+
 ## 🔬 Methodology: The Hatano Method
 Traditional thresholding often fails at the brain-CSF interface. The **Hatano Method** improves this by:
 1. **Log-Transformation**: Converting voxel intensities into log-space to normalize the distribution.
