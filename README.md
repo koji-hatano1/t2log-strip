@@ -61,7 +61,10 @@ While `mri_synthstrip` provides excellent brain extraction, standard thresholdin
 The following overlay demonstrates the significant difference in brain extraction precision.
 
 <img src="./images/comparison.png" width="400">
-Background: T1w_acpc_dc_restore | Red: Standard FSL-BET | Blue: t2log-strip
+**Background**: T1w_acpc_dc_restore
+**Red (FSL-BET)**: Shows extraneous non-brain tissue, such as the venous sinuses, that were successfully excluded by t2log-strip.
+**Blue (t2log-strip)**: Highlights previously over-stripped brain regions that have been restored for a more complete extraction.
+**Purple**: Represents the overlap where both methods align.
 
 ## 🛠 Prerequisites
 Ensure the following tools are installed and accessible in your `$PATH`:
