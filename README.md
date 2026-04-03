@@ -17,6 +17,7 @@ To use this script, edit the following lines in `t2log-strip.sh` to match your e
 # --- Configuration ---
 Subjlist="306 310"                         # Array of Subject IDs to process
 BASE_PATH="/path/to/your/project"          # Full path to the project root
+```
 
 ## 📊 Summary Output (CSV)
 For every session, the script generates a comprehensive CSV report:
