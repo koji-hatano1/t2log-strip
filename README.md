@@ -1,4 +1,5 @@
-# 🧠 t2log-strip: The Hatano Skull-Stripping Method (HSS Method) v3.11
+# 🧠 t2log-strip
+**The Hatano Skull-Stripping Method (HSS Method) v3.11**
 
 `t2log-strip` is a professional utility implementing the **Hatano Skull-Stripping (HSS) Method**. It provides a statistical optimization layer for `mri_synthstrip` to ensure high-precision cortical surface preservation.
 
