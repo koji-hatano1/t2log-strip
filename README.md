@@ -46,7 +46,7 @@ If you need to revert the changes or test different threshold parameters, use th
 chmod +x recover_t2ls.sh
 ./recover_t2ls.sh
 ```
-
+Note: Before running, you must edit the Subjlist and BASE_PATH in recover_t2ls.sh to match your current environment, just as you did in the main script.
 Note: This script restores the original files from the *_bet.nii.gz backups created during the initial run. It is highly recommended to run this recovery script before re-running t2log-strip.sh with different settings to ensure a clean starting point.
 
 ## 🔬 Methodology: T2w-based SynthStrip with Log-Normal Adaptive Thresholding Method
