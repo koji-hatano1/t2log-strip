@@ -59,7 +59,7 @@ While `mri_synthstrip` provides excellent brain extraction, standard thresholdin
 ### 📊 Visual Proof: Precision & Surface Protection
 The following overlay demonstrates the significant difference in brain extraction precision.
 
-<img src="./images/comparison.png" width="600">
+<img src="./images/comparison.png" width="400">
 *Background: T1w_acpc_dc_restore | Red: Standard FSL-BET | Blue: t2log-strip (HSS Method v3.11)*
 
 
