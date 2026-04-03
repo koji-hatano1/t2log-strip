@@ -7,7 +7,7 @@
 # ===================================================================================================
 
 # --- Configuration ---
-Subjlist="306 310"                         # Array of Subject IDs to recover
+Subjlist="001 002 003"                         # Array of Subject IDs to recover
 BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
 
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
