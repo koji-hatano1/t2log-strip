@@ -41,8 +41,8 @@ chmod +x recover_t2ls.sh
 
 Note: This script restores the original files from the *_bet.nii.gz backups created during the initial run. It is highly recommended to run this recovery script before re-running t2log-strip.sh with different settings to ensure a clean starting point.
 
-## 🔬 Methodology: The Hatano Method
-While `mri_synthstrip` provides excellent brain extraction, standard thresholding can sometimes be aggressive at the brain-CSF interface. The **Hatano Method** acts as an optimization layer to refine these boundaries:
+## 🔬 Methodology: The Hatano Skull-Stripping (HSS) Method
+While `mri_synthstrip` provides excellent brain extraction, standard thresholding can sometimes be aggressive at the brain-CSF interface. The **Hatano Skull-Stripping (HSS) Method** acts as an optimization layer to refine these boundaries:
 
 1. **Log-Normal Analysis**: Analyzing voxel intensities in log-space to better characterize the brain tissue distribution.
 2. **Statistical Refinement**: Applying a 2.576 SD (99% CI) threshold to objectively fine-tune the mask boundaries.
