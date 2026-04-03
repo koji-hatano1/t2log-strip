@@ -1,12 +1,12 @@
 # 🧠 t2log-strip
-**The Hatano Skull-Stripping Method (HSS Method) v3.11**
+**T2w-based SynthStrip with Log-Normal Adaptive Thresholding v3.11**
 
-`t2log-strip` is a professional utility implementing the **Hatano Skull-Stripping (HSS) Method**. It provides a statistical optimization layer for `mri_synthstrip` to ensure high-precision cortical surface preservation.
+`t2log-strip` is a professional utility implementing the **T2w-based SynthStrip with Log-Normal Adaptive Thresholding Method**. It provides a statistical optimization layer for `mri_synthstrip` to ensure high-precision cortical surface preservation.
 
 ## 🚀 Overview
 `t2log-strip` is an advanced brain masking utility that combines the robust extraction of `mri_synthstrip` with a specialized **Log-Normal Adaptive Thresholding** strategy.
 
-Developed as **The Hatano Method**, this approach is specifically designed to maximize brain surface protection, ensuring that delicate cortical boundaries are preserved while effectively removing non-brain tissue.
+Developed as **T2w-based SynthStrip with Log-Normal Adaptive Thresholding**, this approach is specifically designed to maximize brain surface protection, ensuring that delicate cortical boundaries are preserved while effectively removing non-brain tissue.
 
 ## 💎 Design Philosophy: Enhancing the Gold Standard
 The standard **HCP Pipeline** is renowned for its robust "two-stage" brain extraction—starting with a conservative FSL-BET in *PreFreeSurfer* followed by a precise refinement during the *FreeSurfer* stage. This design is exceptionally reliable across diverse datasets.
@@ -49,8 +49,8 @@ chmod +x recover_t2ls.sh
 
 Note: This script restores the original files from the *_bet.nii.gz backups created during the initial run. It is highly recommended to run this recovery script before re-running t2log-strip.sh with different settings to ensure a clean starting point.
 
-## 🔬 Methodology: The Hatano Skull-Stripping (HSS) Method
-While `mri_synthstrip` provides excellent brain extraction, standard thresholding can sometimes be aggressive at the brain-CSF interface. The **Hatano Skull-Stripping (HSS) Method** acts as an optimization layer to refine these boundaries:
+## 🔬 Methodology: T2w-based SynthStrip with Log-Normal Adaptive Thresholding Method
+While `mri_synthstrip` provides excellent brain extraction, standard thresholding can sometimes be aggressive at the brain-CSF interface. **T2w-based SynthStrip with Log-Normal Adaptive Thresholding Method** acts as an optimization layer to refine these boundaries:
 
 1. **Log-Normal Analysis**: Analyzing voxel intensities in log-space to better characterize the brain tissue distribution.
 2. **Statistical Refinement**: Applying a 2.576 SD (99% CI) threshold to objectively fine-tune the mask boundaries.
@@ -65,8 +65,8 @@ The following overlay demonstrates the significant difference in brain extractio
 
 ## 🛠 Prerequisites
 Ensure the following tools are installed and accessible in your `$PATH`:
-- **FSL** (FMRIB Software Library)
-- **FreeSurfer** (specifically `mri_synthstrip`)
+- **FSL 6.0.7** (FMRIB Software Library)
+- **FreeSurfer 7.4.1** (specifically `mri_synthstrip`)
 - **bc** (GNU arbitrary precision calculator)
 
 ---
