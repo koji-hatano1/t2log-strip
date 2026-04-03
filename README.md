@@ -35,9 +35,9 @@ BASE_PATH="/path/to/your/project"          # Full path to the project root
 ## 📊 Summary Output (CSV)
 For every session, the script generates a comprehensive CSV report:
 - **Initial-Voxels**: Voxel count before thresholding.
-- **Dropped-Voxels**: Exact number of voxels removed by the Hatano Method.
+- **Dropped-Voxels**: Exact number of voxels removed.
 - **Dropped-Percent**: Percentage of removal (Quality Control metric).
-- **Final-Mask-Size**: Resulting mask volume in voxels.
+- **Final-Mask-Size**: Resulting mask volume in voxels, including the effect of hole filling (fillh).
 
 ## 🔄 Recovery & Undo Process
 If you need to revert the changes or test different threshold parameters, use the provided recovery script:
