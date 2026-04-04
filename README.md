@@ -1,7 +1,7 @@
 # t2log-strip (v3.11)
 **T2w-based SynthStrip with Log-Normal Adaptive Thresholding**
 
-t2log-strip is a high-precision brain masking utility designed for the HCP Pipeline. It optimizes `mri_synthstrip` using a statistical Log-Normal strategy to maximize cortical surface preservation.
+t2log-strip is a high-precision brain masking utility designed for the HCP Pipeline. It optimizes `mri_synthstrip` using a statistical Log-Normal strategy to **ensure aggressive cleanup of non-brain tissues (e.g., venous sinuses and dura)** while simultaneously **maximizing cortical surface preservation**.
 
 ## 🚀 Key Features
 - **Statistical Refinement**: Uses a 99% CI (2.576 SD) threshold in log-space to refine brain boundaries.
