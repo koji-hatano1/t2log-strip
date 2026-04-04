@@ -7,21 +7,19 @@
 #  GITHUB:    https://github.com/koji-hatano1/t2log-strip
 # ===================================================================================================
 
-
 # --- Configuration ---
 Subjlist="001 002 003"                     # Array of Subject IDs to process
 BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
 
-
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
-LOG_FILE="repair_hatano_v3.11_Final_${TIMESTAMP}.log"
-ERR_FILE="repair_hatano_v3.11_Final_${TIMESTAMP}.err"
+LOG_FILE="hss-t2ls_v3.11_${TIMESTAMP}.log"
+ERR_FILE="hss-t2ls_v3.11_${TIMESTAMP}.err"
 
 # Function to output to both terminal and log file
 log_info() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] $1" | tee -a "$LOG_FILE"; }
 log_err() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [ERROR] (Session ${SESSION}) $1" | tee -a "$ERR_FILE" | tee -a "$LOG_FILE" >&2; }
 
-log_info "t2log-strip.sh: === Hatano Skull Stripping　Method v3.11 Started ==="
+log_info "t2log-strip.sh: === Hatano Skull Stripping Method v3.11 Started ==="
 
 for SESSION in ${Subjlist} ; do
     log_info "------------------------------------------------------------"
