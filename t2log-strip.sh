@@ -85,7 +85,7 @@ for SESSION in ${Subjlist} ; do
 
             # Visual Histogram (Logged only to keep terminal clean)
             {
-                echo "--- Visual Histogram (x: Out of Threshold | *: In) ---"
+                echo "--- Visual Histogram (x: Out of Threshold | o: In) ---"
                 fslstats "${INPUT_BRAIN}" -h 40 | tail -n +2 | \
                 awk -v low="$AUTO_MIN" -v high="$AUTO_MAX" '
                 {
