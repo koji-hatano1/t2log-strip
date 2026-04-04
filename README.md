@@ -7,12 +7,14 @@ t2log-strip is a high-precision brain masking utility designed for the HCP Pipel
 - **Statistical Refinement**: Uses a 99% CI (2.576 SD) threshold in log-space to refine brain boundaries.
 - **Elite Pre-processing**: Provides cleaner input for FreeSurfer, minimizing segmentation errors and protecting the cortical ribbon.
 - **HCP Ready**: Seamlessly integrates with the standard HCP directory structure.
+- **Aggressive Cleanup**: Effectively strips away persistent non-brain tissues like **venous sinuses** and dura that often contaminate the standard mask.
 
 ## 📂 HCP Pipeline Integration
 This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
 
 - **Strategy**: Replaces conservative FSL-BET with a high-fidelity mask, avoiding the need for excessive margins.
-- **Note**: Applying this mask requires appropriate tuning of the FreeSurfer process to align with the refined input.
+- **Note**: To fully leverage the potential of this high-fidelity mask, the FreeSurfer process (e.g., `recon-all`) should be appropriately tuned or customized to align with the refined brain-surface input.
+
 
 ## ⚙️ Configuration & Usage
 Edit `t2log-strip.sh` to match your environment:
@@ -40,14 +42,15 @@ While `mri_synthstrip` is robust, standard thresholding can be aggressive. This 
 - **Log-Normal Analysis**: Analyzes voxel intensities in log-space for better tissue characterization.
 - **Statistical Refinement**: Applies a **2.576 SD (99% CI)** threshold to fine-tune boundaries.
 - **Surface Preservation**: Prevents over-stripping of the cortical ribbon, ensuring the integrity of the brain surface.
+- **Enhanced Exclusion**: Objectively identifies and excludes non-brain outliers, such as the **venous sinuses**, that often survive standard thresholding.
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
 
 - **Background**: `T1w_acpc_dc_restore`
-- **Red (FSL-BET)**: Extraneous tissue (e.g., **venous sinuses**) successfully excluded.
-- **Blue (t2log-strip)**: **Restored** brain regions that were previously over-stripped.
-- **Purple**: **Overlap** where both methods align.
+- **Red**: Extraneous non-brain tissue (e.g., **venous sinuses** and **dura**) captured by FSL-BET but **successfully excluded** by t2log-strip.
+- **Blue**: **Restored** brain regions that were previously over-stripped by standard methods.
+- **Purple**: **Overlap** where both masks align.
 
 To reproduce this view with **Freeview**, use the provided viewer script:
 ```bash
