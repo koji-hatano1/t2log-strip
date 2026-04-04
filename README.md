@@ -49,6 +49,7 @@ While `mri_synthstrip` is robust, standard thresholding can be aggressive. This 
 - **Blue (t2log-strip)**: **Restored** brain regions that were previously over-stripped.
 - **Purple**: **Overlap** where both methods align.
 To reproduce this view with **Freeview**, use the provided viewer script:
+
 ```bash
 # Setup: Set your HCP directory in BASE_PATH within the script.
 ```
