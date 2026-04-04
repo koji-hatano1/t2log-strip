@@ -9,7 +9,7 @@
 
 # --- Configuration ---
 Subjlist="001 002 003"                     # Array of Subject IDs to process
-BASE_PATH="/path/to/your/project" 　　　　　# Full path to the project root
+BASE_PATH="/path/to/your/project"          # Full path to the project root
 
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
 LOG_FILE="hss-t2ls_v3.11_${TIMESTAMP}.log"
