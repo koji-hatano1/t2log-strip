@@ -2,7 +2,7 @@
 
 # ===================================================================================================
 #  SCRIPT:    t2log-strip.sh
-#  METHOD:    The Hatano Method (v3.11)
+#  METHOD:    Hatano Skull Stripping Method (v3.11)
 #  STRATEGY:  T2w-based SynthStrip with Log-Normal Adaptive Thresholding (2.576 SD)
 #  GITHUB:    https://github.com/koji-hatano1/t2log-strip
 # ===================================================================================================
@@ -21,7 +21,7 @@ ERR_FILE="repair_hatano_v3.11_Final_${TIMESTAMP}.err"
 log_info() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] $1" | tee -a "$LOG_FILE"; }
 log_err() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [ERROR] (Session ${SESSION}) $1" | tee -a "$ERR_FILE" | tee -a "$LOG_FILE" >&2; }
 
-log_info "t2log-strip.sh: === Hatano Method v3.11 (Final Edition) Started ==="
+log_info "t2log-strip.sh: === Hatano Skull Stripping　Method v3.11 Started ==="
 
 for SESSION in ${Subjlist} ; do
     log_info "------------------------------------------------------------"
@@ -79,23 +79,28 @@ for SESSION in ${Subjlist} ; do
             # --- 5. Terminal and Log Output ---
             {
                 echo "------------------------------------------------------------"
-                echo -e " \033[1;36mSession: ${SESSION} | Mode: Log-Normal ${SD_FACTOR}SD\033[0m"
+                echo "Session: ${SESSION} | Mode: Log-Normal ${SD_FACTOR}SD"
                 printf " [Thresholds] Auto-Min: %.2f | Auto-Max: %.2f\n" "$AUTO_MIN" "$AUTO_MAX"
                 printf " [Stats] Initial: %d | Dropped: %d voxels (%.2f%%)\n" "$VOX_PRE" "$VOX_DIFF" "$DIFF_PERCENT"
                 echo " [Final] Mask Size: $VOX_POST voxels"
-                echo "--- Visual Histogram (Blue: Low-Drop | Red: High-Drop) ---"
+            } | tee -a "$LOG_FILE"
+
+            # Visual Histogram (Logged only to keep terminal clean)
+            {
+                echo "--- Visual Histogram (x: Out of Threshold | *: In) ---"
                 fslstats "${INPUT_BRAIN}" -h 40 | tail -n +2 | \
                 awk -v low="$AUTO_MIN" -v high="$AUTO_MAX" '
                 {
                     val = (NR * 1000 / 40); printf "%4d: ", val;
-                    for(i=0; i<$1/2000; i++) {
-                        if (val > high) printf "\033[31m*\033[0m"; 
-                        else if (val < low) printf "\033[34m*\033[0m"; 
+                    # Scale set to 5000 to prevent terminal wrapping
+                    for(i=0; i<$1/5000; i++) {
+                        if (val > high) printf "x"; 
+                        else if (val < low) printf "x"; 
                         else printf "*";
                     } print "";
                 }'
                 echo "------------------------------------------------------------"
-            } | tee -a "$LOG_FILE"
+            } >> "$LOG_FILE"
 
             log_info "  Step B: Updating brain-extracted files in T1w folder..."            
             for img in T1w_acpc_dc_restore T1w_acpc_dc T1w_acpc T2w_acpc_dc_restore T2w_acpc_dc T2w_acpc; do
@@ -123,7 +128,7 @@ for SESSION in ${Subjlist} ; do
 done
 
 # ===================================================================================================
-#  Hatano Method: Auto-Summary Generator
+#  Hatano Skull Stripping Method: Auto-Summary Generator
 # ===================================================================================================
 SUMMARY_FILE="hss_summary_${TIMESTAMP}.csv"
 
@@ -149,4 +154,4 @@ done
 log_info "------------------------------------------------------------"
 log_info " [HSS Summary Created] --> ${SUMMARY_FILE}"
 log_info "------------------------------------------------------------"
-log_info "t2log-strip.sh: Hatano Method v3.11 Complete."
+log_info "t2log-strip.sh: Hatano Skull Stripping Method v3.11 Complete."
