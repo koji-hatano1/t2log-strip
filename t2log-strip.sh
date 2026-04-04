@@ -94,7 +94,7 @@ for SESSION in ${Subjlist} ; do
                     for(i=0; i<$1/5000; i++) {
                         if (val > high) printf "x"; 
                         else if (val < low) printf "x"; 
-                        else printf "*";
+                        else printf "o";
                     } print "";
                 }'
                 echo "------------------------------------------------------------"
