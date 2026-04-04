@@ -49,7 +49,7 @@ While `mri_synthstrip` is robust, applying a T2w-derived mask directly can often
 
 - **Background**: `T1w_acpc_dc_restore`
 - **Red**: Extraneous non-brain tissue (e.g., **venous sinuses** and **dura**) captured by FSL-BET but **successfully excluded** by t2log-strip.
-- **Blue**: **Restored** brain regions that were previously over-stripped by standard methods.
+- **Cyan**: **Restored** brain regions that were previously over-stripped by standard methods.
 - **Purple&Green**: **Overlap** where both masks align.
 
 To reproduce this view with **Freeview**, use the provided viewer script:
