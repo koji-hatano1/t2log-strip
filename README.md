@@ -39,8 +39,9 @@ chmod +x recover_t2ls.sh
 While `mri_synthstrip` is robust, standard thresholding can be aggressive. This tool adds a statistical optimization layer:
 
 - **Log-Normal Analysis**: Analyzes voxel intensities in log-space for better tissue characterization.
-- **Statistical Refinement**: Applies a **2.576 SD (99% CI)** threshold to fine-tune boundaries.
-- **Surface Preservation**: Prevents over-stripping of the cortical ribbon while objectively excluding non-brain outliers like **venous sinuses** and **dura** that often survive standard thresholding.
+- **Adaptive Statistical Refinement**: Instead of relying on fixed thresholds, it applies a **2.576 SD (99% CI)** threshold derived from image-specific log-normal distributions to objectively fine-tune boundaries.
+- **Dynamic Surface Protection**: Prevents over-stripping of the cortical ribbon by adapting to each scan's intensity profile, ensuring the exclusion of outliers like **venous sinuses** and **dura** while preserving the brain surface.
+
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
