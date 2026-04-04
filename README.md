@@ -36,12 +36,11 @@ chmod +x recover_t2ls.sh
 > - **Clean Start**: Highly recommended to run this recovery script before re-running `t2log-strip.sh` with new parameters.
 
 ## 🔬 Methodology: Log-Normal Adaptive Thresholding
-While `mri_synthstrip` is robust, standard thresholding can be aggressive. This tool adds a statistical optimization layer:
+While `mri_synthstrip` is robust, applying a T2w-derived mask directly can often capture unwanted non-brain structures due to T2w-specific signal profiles. This tool adds a statistical optimization layer to solve this:
 
-- **Log-Normal Analysis**: Analyzes voxel intensities in log-space for better tissue characterization.
-- **Adaptive Statistical Refinement**: Instead of relying on fixed thresholds, it applies a **2.576 SD (99% CI)** threshold derived from image-specific log-normal distributions to objectively fine-tune boundaries.
-- **Dynamic Surface Protection**: Prevents over-stripping of the cortical ribbon by adapting to each scan's intensity profile, ensuring the exclusion of outliers like **venous sinuses** and **dura** while preserving the brain surface.
-
+- **Log-Normal Analysis**: Analyzes voxel intensities in log-space for superior tissue characterization, specifically targeting the intensity distribution of the T2w signal.
+- **Adaptive Statistical Refinement**: Instead of relying on fixed thresholds that might fail across different scans, it applies a **2.576 SD (99% CI)** threshold derived from each image's unique distribution to objectively fine-tune boundaries.
+- **Dynamic Surface & Cleanup**: Adapts to each scan's intensity profile to prevent over-stripping of the cortical ribbon, while effectively stripping persistent outliers like **venous sinuses** and **dura** that standard T2w-masking often misses.
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
