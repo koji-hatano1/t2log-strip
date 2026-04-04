@@ -12,9 +12,8 @@ t2log-strip is a high-precision brain masking utility designed for the HCP Pipel
 ## 📂 HCP Pipeline Integration
 This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
 
-- **Strategy**: Replaces conservative FSL-BET with a high-fidelity mask, avoiding the need for excessive margins.
+- **Strategy**: Replaces conservative FSL-BET with a high-fidelity mask that effectively strips persistent non-brain tissues (e.g., **dura and venous sinuses**) while simultaneously **restoring** previously over-stripped brain regions. This eliminates the need for excessive "safety margins" and provides a refined starting point for surface reconstruction.
 - **Note**: To fully leverage the potential of this high-fidelity mask, the FreeSurfer process (e.g., `recon-all`) should be appropriately tuned or customized to align with the refined brain-surface input.
-
 
 ## ⚙️ Configuration & Usage
 Edit `t2log-strip.sh` to match your environment:
@@ -41,8 +40,7 @@ While `mri_synthstrip` is robust, standard thresholding can be aggressive. This 
 
 - **Log-Normal Analysis**: Analyzes voxel intensities in log-space for better tissue characterization.
 - **Statistical Refinement**: Applies a **2.576 SD (99% CI)** threshold to fine-tune boundaries.
-- **Surface Preservation**: Prevents over-stripping of the cortical ribbon, ensuring the integrity of the brain surface.
-- **Enhanced Exclusion**: Objectively identifies and excludes non-brain outliers, such as the **venous sinuses**, that often survive standard thresholding.
+- **Surface Preservation**: Prevents over-stripping of the cortical ribbon while objectively excluding non-brain outliers like **venous sinuses** and **dura** that often survive standard thresholding.
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
