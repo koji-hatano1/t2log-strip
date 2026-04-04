@@ -42,6 +42,7 @@ While `mri_synthstrip` is robust, applying a T2w-derived mask directly can often
 - **Adaptive Statistical Refinement**: Instead of relying on fixed thresholds, it applies a **2.576 SD (99% CI)** threshold derived from each image's unique distribution to objectively fine-tune boundaries.
 - **Dynamic Surface & Cleanup**: Adapts to each scan's intensity profile to prevent over-stripping of the cortical ribbon while effectively stripping persistent outliers like **venous sinuses** and **dura**.
 - **Structural Integrity (fillh)**: Finalizes the mask with a **hole-filling (fillh)** process. This prevents potential FreeSurfer errors and surface reconstruction artifacts caused by internal mask voids, ensuring a topologically sound input for `recon-all`.
+<img src="./images/reoprt_sample.png" width="400">
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
