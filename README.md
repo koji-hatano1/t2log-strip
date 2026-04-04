@@ -48,6 +48,10 @@ While `mri_synthstrip` is robust, standard thresholding can be aggressive. This 
 - **Red (FSL-BET)**: Extraneous tissue (e.g., **venous sinuses**) successfully excluded.
 - **Blue (t2log-strip)**: **Restored** brain regions that were previously over-stripped.
 - **Purple**: **Overlap** where both methods align.
+To reproduce this view with **Freeview**, use the provided viewer script:
+```bash
+# Setup: Set your HCP directory in BASE_PATH within the script.
+```
 
 ## 🛠 Prerequisites
 Ensure these are in your `$PATH`:
