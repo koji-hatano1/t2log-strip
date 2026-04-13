@@ -5,6 +5,9 @@ Robust brain extraction for T2-weighted images using `mri_synthstrip` with log-t
 ## Overview
 Brain extraction on T2 images can be unstable due to high-intensity signals from fat or soft tissue. This tool improves `mri_synthstrip` accuracy by applying log-transformation and robust scaling as preprocessing steps.
 
+**Note on Hardware:**  
+For optimal results with minimal geometric distortion in the **OFC (Orbitofrontal Cortex)** and **TP (Temporal Pole)**, the use of a **16-channel head coil** is highly recommended. (Note: A separate version for 32-channel coils is planned for future development due to different sensitivity profiles.)
+
 ## Optimization Workflow
 To achieve the best results, do not rely on fixed parameters. Follow this step-by-step optimization based on your data's histogram.
 
