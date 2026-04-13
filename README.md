@@ -63,6 +63,14 @@ After execution, check the **histogram and processing output in each `$SUBJ_LOG`
 
 > **Note**: This iterative adjustment ensures the highest precision by accounting for individual variability in T2 intensity distributions and susceptibility artifacts.
 
+### 🔄 Recovery & Undo Process ###
+If you need to revert changes or test different parameters, use the provided recovery script:
+
+```
+chmod +x recover_t2ls.sh
+./recover_t2ls.sh
+```
+
 > [!IMPORTANT]
 > - **Configuration**: Ensure `Subjlist` and `BASE_PATH` in `recover_t2ls.sh` match your environment.
 > - **Restoration**: Restores original files from the `*_bet.nii.gz` backups created during the initial run.
