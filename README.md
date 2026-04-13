@@ -30,12 +30,7 @@ After setting `border_num`, use the **histogram in the individual subject's log*
 
 ## Usage
 
-### 1. Requirements
-- **FreeSurfer** (specifically `mri_synthstrip`)
-- **FSL**
-- **BC** (for floating-point calculations in shell)
-
-### 2. Setup
+### 1. Setup
 Edit the `# --- Configuration ---` section in `t2log-strip.sh` to match your environment:
 
 ```bash
@@ -45,14 +40,14 @@ BASE_PATH="/path/to/your/project"   # Full path to the project root
 border_num=1                        # 1: Tight, 2: Conservative
 ci_threshold=1.960                  # 1.960 (95% CI/SD) to 2.576 (99% CI/SD)
 ```
-### 3. Execution
+### 2. Execution
 Run the script from your terminal:
 ```bash
 chmod +x t2log-strip.sh
 ./t2log-strip.sh
 ```
 
-### 4. Review and Adjust (Iterative Process)
+### 3. Review and Adjust (Iterative Process)
 After execution, check the **histogram and processing output in each `$SUBJ_LOG`**.
 
 <img src="./images/report_sample.png" width="400">
@@ -65,7 +60,7 @@ After execution, check the **histogram and processing output in each `$SUBJ_LOG`
 
 > **Note**: This iterative adjustment ensures the highest precision by accounting for individual variability in T2 intensity distributions and susceptibility artifacts.
 
-### 5. Recovery & Undo Process ###
+### 4. Recovery & Undo Process ###
 If you need to revert changes or test different parameters, use the provided recovery script:
 
 ```
@@ -78,7 +73,20 @@ chmod +x recover_t2ls.sh
 > - **Restoration**: Restores original files from the `*_bet.nii.gz` backups created during the initial run.
 > - **Clean Start**: Highly recommended to run this recovery script before re-running `t2log-strip.sh` with new parameters.
 
-## 📊 Visual Proof: Precision Comparison
+## HCP Integration
+This script is specifically optimized for the **HCP (Human Connectome Project) Pipeline** directory structure, ensuring that the high-precision T2-based mask is propagated across all relevant spaces.
+
+- **T1w Space**: Automatically updates `T1w_acpc_dc_restore_brain.nii.gz` and other T1-weighted images in the `${T1wFolder}` using the new T2-based mask.
+- **MNI Space Synchronization**: Synchronizes the updated mask to the **MNINonLinear** folder via `acpc_dc2standard` warps, updating `T1w_restore_brain.nii.gz` and `T2w_restore_brain.nii.gz`.
+- **Auto-Backup**: Creates backups of original images (suffix: `_bet.nii.gz`) before applying the new masks, ensuring original data safety.
+
+## QA & Reporting
+### Batch Summary (CSV)
+A summary file (`hss_t2ls_summary_*.csv`) is automatically generated at the end of the process. This allows for cohort-wide quality assurance by providing:
+- **Thresholding Stats**: Min/Max intensity thresholds and SD factors for each subject.
+- **Voxel Drop Rates**: Percentage of voxels removed, helping to identify potential over-stripping at a glance.
+
+## Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
 
 - **Background**: `T1w_acpc_dc_restore`
@@ -92,7 +100,7 @@ To reproduce this view with **Freeview**, use the provided viewer script:
 ./fview_t2ls.sh [Subject_ID]
 ```
 
-## 🛠 Prerequisites
+## Prerequisites
 Ensure these are in your `$PATH`:
 - **FSL 6.0.7**
 - **FreeSurfer 7.4.1** (`mri_synthstrip`)
