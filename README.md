@@ -17,27 +17,33 @@ In the `# --- Configuration ---` section, set the `border_num` variable:
 - **Adjustment**: If the **per-subject log** or result shows over-stripping, change to `border_num=2` to preserve more boundary tissue.
 
 ### 2. Fine-tuning via `ci_threshold` (Confidence Interval / SD)
-After setting `border_num`, use the **histogram in the individual subject's log** to finely tune the `ci_threshold` value. This variable acts as the **SD (Standard Deviation) factor** to isolate the brain parenchyma from **Flow voids** and **CSF**.
+After setting `border_num`, use the **histogram in the individual subject's log** to finely tune the `ci_threshold` value. This acts as the **SD (Standard Deviation) factor** to isolate the brain parenchyma from **Flow voids** (low intensity) and **CSF** (high intensity).
 
-- **Goal**: Ensure the brain signal resides within the **second cluster (layer)** of the histogram.
+- **Goal**: Ensure the brain signal resides within the **second cluster (layer) from the lowest intensity** in the histogram.
 - **Adjustment Guide**: 
     - **1.960 (95% CI / SD)**: The standard starting point.
     - **2.241 (97.5% CI / SD)**: For intermediate refinement.
-    - **2.576 (99% CI / SD)**: Use this to preserve more tissue if over-stripping occurs.
+    - **2.576 (99% CI / SD)**: Use this if brain parenchyma is being removed at 1.960.
+    - *The value can be adjusted in small increments to perfectly "sandwich" the brain signal between noise and outliers.*
 
 > **Key Tip:** Prioritize "no over-stripping." Refer to the **histogram in your log** and adjust `ci_threshold` until the brain tissue is stably positioned in the second intensity layer.
 
-## 📂 HCP Pipeline Integration
-This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
+## Usage
 
-- **Strategy**: Replaces conservative FSL-BET with a high-fidelity mask that effectively strips persistent non-brain tissues (e.g., **dura and venous sinuses**) while simultaneously **restoring** previously over-stripped brain regions. This eliminates the need for excessive "safety margins" and provides a refined starting point for surface reconstruction.
-- **Note**: To fully leverage the potential of this high-fidelity mask, the FreeSurfer process (e.g., `recon-all`) should be appropriately tuned or customized to align with the refined brain-surface input.
+### 1. Requirements
+- **FreeSurfer** (specifically `mri_synthstrip`)
+- **FSL**
+- **BC** (for floating-point calculations in shell)
 
-## ⚙️ Configuration & Usage
-Edit `t2log-strip.sh` to match your environment:
+### 2. Setup
+Edit the `# --- Configuration ---` section in `t2log-strip.sh` to match your environment:
+
 ```bash
-Subjlist="001 002 003"            # Subject IDs
-BASE_PATH="/path/to/project"      # Project root
+# --- Configuration ---
+Subjlist="001 002 003"              # Array of Subject IDs to process
+BASE_PATH="/path/to/your/project"   # Full path to the project root
+border_num=1                        # 1: Tight, 2: Conservative
+ci_threshold=1.960                  # 1.960 (95% CI/SD) to 2.576 (99% CI/SD)
 ```
 
 ## 🔄 Recovery & Undo Process
