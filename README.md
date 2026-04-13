@@ -1,31 +1,31 @@
 # t2log-strip
 
-Robust brain extraction for T2-weighted images using `mri_synthstrip` with log-transform and standardization preprocessing.
+This tool provides robust brain extraction for T2-weighted images by leveraging `mri_synthstrip` with log-transformation and statistical standardization preprocessing.
 
 ## Overview
-Brain extraction on T2 images can be unstable due to high-intensity signals from fat or soft tissue. This tool improves `mri_synthstrip` accuracy by applying log-transformation and robust scaling as preprocessing steps.
+Brain extraction on T2 images is often compromised by high-intensity signals from non-brain tissues and geometric distortions. This tool stabilizes the input for `mri_synthstrip` through robust scaling, ensuring reliable results.
 
-**Note on Hardware:**  
-For optimal results with minimal geometric distortion in the **OFC (Orbitofrontal Cortex)** and **TP (Temporal Pole)**, the use of a **16-channel head coil** is highly recommended. (Note: A separate version for 32-channel coils is planned for future development due to different sensitivity profiles.)
+**Hardware Recommendation:**
+The use of a **16-channel head coil** is recommended. This setup typically exhibits fewer distortions in areas prone to susceptibility artifacts, such as the **Orbitofrontal Cortex (OFC)** and **Temporal Pole (TP)**, which is essential for accurate skull stripping in T2-weighted scans.
 
 ## Optimization Workflow
-To achieve the best results, do not rely on fixed parameters. Follow this step-by-step optimization based on your data's histogram.
+Parameters should be adjusted by inspecting the **histogram provided in each subject's individual log**.
 
 ### 1. Initial `-b` Selection (Start with 1)
-First, test the `-b` (outlier threshold) in `mri_synthstrip`:
-- **Primary choice**: Start with **`-b 1`** for a tighter extraction.
-- **Alternative**: If **`-b 1`** causes over-stripping (removes brain tissue), switch to **`-b 2`** for a more conservative boundary.
+The `-b` option (outlier threshold) in `mri_synthstrip` is the first parameter to test:
+- **First choice**: Start with **`-b 1`** for a tighter extraction.
+- **Adjustment**: If the **per-subject log** or result shows over-stripping, switch to **`-b 2`** to preserve more boundary tissue.
 
-### 2. Fine-tuning the SD / Confidence Interval (CI)
-Once `-b` is set, adjust the **Standardization threshold** while checking the histogram of the preprocessed image. The CI can be finely tuned (e.g., in 1% increments) to find the optimal balance.
+### 2. Fine-tuning with Confidence Intervals (CI / SD)
+Once `-b` is determined, use the **histogram in the individual subject's log** to finely tune the Standardization threshold.
 
-- **Goal**: Ensure the brain signal resides within the **second cluster (layer) from the lowest intensity**.
-- **Adjustment Examples**: 
-    - **95% CI (approx. 1.960 SD)**: A common starting point.
-    - **97.5% CI (approx. 2.241 SD)**: For intermediate adjustment.
-    - **99% CI (approx. 2.576 SD)**: Use this if brain tissue is still being over-stripped.
+- **Goal**: Ensure the brain signal is correctly mapped, typically residing within the **second cluster (layer) from the lowest intensity** in the histogram.
+- **Adjustment Guide**: 
+    - **95% CI (approx. 1.960 SD)**: The standard starting point.
+    - **99% CI (approx. 2.576 SD)**: Use this if brain parenchyma is still being removed at 95%.
+    - *Other values (e.g., 97.5% / 2.241 SD) can be used for precise control.*
 
-> **Key Tip:** Prioritize "no over-stripping." Finely adjust the CI/SD threshold until the brain parenchyma is stably positioned in the second intensity layer of the histogram.
+> **Key Tip:** Prioritize "no over-stripping." Refer to the **histogram in the subject-specific log** and adjust the CI/SD threshold until the brain tissue is stably positioned in the second intensity layer.
 
 ## 📂 HCP Pipeline Integration
 This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
