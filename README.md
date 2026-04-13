@@ -8,7 +8,8 @@ While `mri_synthstrip` is a powerful and flexible brain extraction tool, it can 
 **t2log-strip** addresses these challenges by applying a robust log-normal standardization. This stabilizes the input for `mri_synthstrip`, ensuring highly precise and reproducible skull stripping tailored for HCP-style T2w datasets.
 
 **Hardware Recommendation:**
-For optimal results with minimal geometric distortion in areas such as the **OFC (Orbitofrontal Cortex)** and **TP (Temporal Pole)**, the use of a **16-channel head coil** is highly recommended.
+For optimal results with minimal geometric distortion in areas such as the **OFC (Orbitofrontal Cortex)** and **TP (Temporal Pole)**, the use of a **16-channel head coil** is highly recommended. 
+*(Note: If you are using a **32-channel coil**, please consider using the **t2log-hybrid** method (upcoming release), which is specifically designed for high-density coil profiles.)*
 
 ## Optimization Workflow
 Parameters should be adjusted based on the **histogram provided in each individual subject's log**.
