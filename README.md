@@ -7,7 +7,7 @@ t2log-strip is a high-precision brain masking utility designed for the HCP Pipel
 **Accurate alignment between T1w and T2w images is a prerequisite.** You must perform a report review and visual inspection of both the **registration** and the **generated brain mask** to ensure accuracy before proceeding.
 
 ## 🚀 Key Features
-- **Statistical Refinement**: Uses a 99% CI (2.576 SD) threshold in log-space to refine brain boundaries.
+- **Statistical Refinement**: Uses a 95% CI (1.960 SD) threshold in log-space to refine brain boundaries.
 - **Elite Pre-processing**: Provides cleaner input for FreeSurfer, minimizing segmentation errors and protecting the cortical ribbon.
 - **HCP Ready**: Seamlessly integrates with the standard HCP directory structure.
 - **Aggressive Cleanup**: Effectively strips away persistent non-brain tissues like **venous sinuses** and dura that often contaminate the standard mask.
