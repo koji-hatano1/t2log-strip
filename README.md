@@ -55,6 +55,8 @@ chmod +x t2log-strip.sh
 ### 4. Review and Adjust (Iterative Process)
 After execution, check the **histogram and processing output in each `$SUBJ_LOG`**.
 
+<img src="./images/report_sample.png" width="400">
+
 1. **Check the Histogram**: Identify the brain parenchyma cluster (the second layer).
 2. **Evaluate the Mask**: 
     - **If the brain is over-stripped**: Increase `ci_threshold` (e.g., to 2.576) or change `border_num` to 2.
@@ -63,7 +65,7 @@ After execution, check the **histogram and processing output in each `$SUBJ_LOG`
 
 > **Note**: This iterative adjustment ensures the highest precision by accounting for individual variability in T2 intensity distributions and susceptibility artifacts.
 
-### 🔄 Recovery & Undo Process ###
+### 5. Recovery & Undo Process ###
 If you need to revert changes or test different parameters, use the provided recovery script:
 
 ```
@@ -75,15 +77,6 @@ chmod +x recover_t2ls.sh
 > - **Configuration**: Ensure `Subjlist` and `BASE_PATH` in `recover_t2ls.sh` match your environment.
 > - **Restoration**: Restores original files from the `*_bet.nii.gz` backups created during the initial run.
 > - **Clean Start**: Highly recommended to run this recovery script before re-running `t2log-strip.sh` with new parameters.
-
-## 🔬 Methodology: Log-Normal Adaptive Thresholding
-While `mri_synthstrip` is robust, applying a T2w-derived mask directly can often capture unwanted non-brain structures due to T2w-specific signal profiles. This tool adds a statistical optimization layer to solve this:
-
-- **Log-Normal Analysis**: Analyzes voxel intensities in log-space for superior tissue characterization, specifically targeting the intensity distribution of the T2w signal.
-- **Adaptive Statistical Refinement**: Instead of relying on fixed thresholds, it applies a **1.960 SD (95% CI)** threshold derived from each image's unique distribution to objectively fine-tune boundaries.
-- **Dynamic Surface & Cleanup**: Adapts to each scan's intensity profile to prevent over-stripping of the cortical ribbon while effectively stripping persistent outliers like **venous sinuses** and **dura**.
-- **Structural Integrity (fillh)**: Finalizes the mask with a **hole-filling (fillh)** process. This prevents potential FreeSurfer errors and surface reconstruction artifacts caused by internal mask voids, ensuring a topologically sound input for `recon-all`.
-<img src="./images/report_sample.png" width="400">
 
 ## 📊 Visual Proof: Precision Comparison
 <img src="./images/comparison.png" width="400">
