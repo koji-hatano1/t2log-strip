@@ -1,9 +1,11 @@
 # t2log-strip
 
-This tool provides robust brain extraction for T2-weighted images by leveraging `mri_synthstrip` with log-transformation and statistical standardization preprocessing.
+This tool provides robust brain extraction for T2-weighted images by leveraging **FreeSurfer's `mri_synthstrip`** with log-transformation and statistical standardization preprocessing.
 
 ## Overview
-Brain extraction on T2 images is often compromised by high-intensity signals from fat/CSF and low-intensity flow voids. This tool stabilizes the input for `mri_synthstrip` through robust scaling, ensuring reliable results.
+While `mri_synthstrip` is a powerful and flexible brain extraction tool, it can occasionally produce unstable results on T2-weighted images due to high-intensity signals from fat/CSF and low-intensity flow voids. 
+
+**t2log-strip** addresses these challenges by applying a robust log-normal standardization. This stabilizes the input for `mri_synthstrip`, ensuring highly precise and reproducible skull stripping tailored for HCP-style T2w datasets.
 
 **Hardware Recommendation:**
 For optimal results with minimal geometric distortion in areas such as the **OFC (Orbitofrontal Cortex)** and **TP (Temporal Pole)**, the use of a **16-channel head coil** is highly recommended.
