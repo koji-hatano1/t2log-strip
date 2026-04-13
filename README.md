@@ -45,13 +45,11 @@ BASE_PATH="/path/to/your/project"   # Full path to the project root
 border_num=1                        # 1: Tight, 2: Conservative
 ci_threshold=1.960                  # 1.960 (95% CI/SD) to 2.576 (99% CI/SD)
 ```
-
-## 🔄 Recovery & Undo Process
-If you need to revert changes or test different parameters, use the provided recovery script:
-
+### 3. Execution
+Run the script from your terminal:
 ```bash
-chmod +x recover_t2ls.sh
-./recover_t2ls.sh
+chmod +x t2log-strip.sh
+./t2log-strip.sh
 ```
 
 > [!IMPORTANT]
