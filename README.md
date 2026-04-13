@@ -52,6 +52,17 @@ chmod +x t2log-strip.sh
 ./t2log-strip.sh
 ```
 
+### 4. Review and Adjust (Iterative Process)
+After execution, check the **histogram and processing output in each `$SUBJ_LOG`**.
+
+1. **Check the Histogram**: Identify the brain parenchyma cluster (the second layer).
+2. **Evaluate the Mask**: 
+    - **If the brain is over-stripped**: Increase `ci_threshold` (e.g., to 2.576) or change `border_num` to 2.
+    - **If too much CSF/Flow void remains**: Decrease `ci_threshold` (e.g., to 1.960) or change `border_num` to 1.
+3. **Re-run**: Update the variables in the `# --- Configuration ---` section and execute the script again until the extraction is optimal.
+
+> **Note**: This iterative adjustment ensures the highest precision by accounting for individual variability in T2 intensity distributions and susceptibility artifacts.
+
 > [!IMPORTANT]
 > - **Configuration**: Ensure `Subjlist` and `BASE_PATH` in `recover_t2ls.sh` match your environment.
 > - **Restoration**: Restores original files from the `*_bet.nii.gz` backups created during the initial run.
