@@ -1,16 +1,28 @@
-# t2log-strip (v3.11)
-**T2w-based SynthStrip with Log-Normal Adaptive Thresholding**
+# t2log-strip
 
-t2log-strip is a high-precision brain masking utility designed for the HCP Pipeline. It optimizes `mri_synthstrip` using a statistical Log-Normal strategy to **ensure aggressive cleanup of non-brain tissues (e.g., venous sinuses and dura)** while simultaneously **maximizing cortical surface preservation**.
+Robust brain extraction for T2-weighted images using `mri_synthstrip` with log-transform and standardization preprocessing.
 
-### ⚠️ Important
-**Accurate alignment between T1w and T2w images is a prerequisite.** You must perform a report review and visual inspection of both the **registration** and the **generated brain mask** to ensure accuracy before proceeding.
+## Overview
+Brain extraction on T2 images can be unstable due to high-intensity signals from fat or soft tissue. This tool improves `mri_synthstrip` accuracy by applying log-transformation and robust scaling as preprocessing steps.
 
-## 🚀 Key Features
-- **Statistical Refinement**: Uses a 95% CI (1.960 SD) threshold in log-space to refine brain boundaries.
-- **Elite Pre-processing**: Provides cleaner input for FreeSurfer, minimizing segmentation errors and protecting the cortical ribbon.
-- **HCP Ready**: Seamlessly integrates with the standard HCP directory structure.
-- **Aggressive Cleanup**: Effectively strips away persistent non-brain tissues like **venous sinuses** and dura that often contaminate the standard mask.
+## Optimization Workflow
+To achieve the best results, do not rely on fixed parameters. Follow this step-by-step optimization based on your data's histogram.
+
+### 1. Initial `-b` Selection (Start with 1)
+First, test the `-b` (outlier threshold) in `mri_synthstrip`:
+- **Primary choice**: Start with **`-b 1`** for a tighter extraction.
+- **Alternative**: If **`-b 1`** causes over-stripping (removes brain tissue), switch to **`-b 2`** for a more conservative boundary.
+
+### 2. Fine-tuning the SD / Confidence Interval (CI)
+Once `-b` is set, adjust the **Standardization threshold** while checking the histogram of the preprocessed image. The CI can be finely tuned (e.g., in 1% increments) to find the optimal balance.
+
+- **Goal**: Ensure the brain signal resides within the **second cluster (layer) from the lowest intensity**.
+- **Adjustment Examples**: 
+    - **95% CI (approx. 1.960 SD)**: A common starting point.
+    - **97.5% CI (approx. 2.241 SD)**: For intermediate adjustment.
+    - **99% CI (approx. 2.576 SD)**: Use this if brain tissue is still being over-stripped.
+
+> **Key Tip:** Prioritize "no over-stripping." Finely adjust the CI/SD threshold until the brain parenchyma is stably positioned in the second intensity layer of the histogram.
 
 ## 📂 HCP Pipeline Integration
 This tool is designed to follow the initial steps of `PreFreeSurferPipeline.sh`.
