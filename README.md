@@ -34,9 +34,9 @@ In the `# --- Configuration ---` section:
 
 ---
 
-### 2. Fine-tuning via `ci_threshold`
+### 2. Fine-tuning via `SD_FACTOR_T2`
 
-Use the histogram in the subject log to adjust `ci_threshold` (SD-based thresholding):
+Use the histogram in the subject log to adjust `SD_FACTOR_T2` (SD-based thresholding):
 
 - **1.960 (95%)**: standard starting point  
 - **2.241 (97.5%)**: intermediate  
@@ -59,7 +59,7 @@ Edit the configuration in `t2log-strip.sh`:
 Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
 border_num=1
-ci_threshold=1.960
+SD_FACTOR_T2=1.960
 ```
 ### 2. Execution
 
@@ -79,8 +79,8 @@ After execution:
 
 <img src="./images/report_sample.png" width="400">
 
-- **If the brain is over-stripped**: increase `ci_threshold` (e.g., to 2.576) or set `border_num=2`
-- **If non-brain tissue remains**: decrease `ci_threshold` (e.g., to 1.960) or set `border_num=1`
+- **If the brain is over-stripped**: increase `SD_FACTOR_T2` (e.g., to 2.576) or set `border_num=2`
+- **If non-brain tissue remains**: decrease `SD_FACTOR_T2` (e.g., to 1.960) or set `border_num=1`
 
 > **Tip:** Prioritize avoiding over-stripping. Adjust parameters so that brain tissue remains stable within the second intensity cluster.
 
