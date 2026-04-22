@@ -12,8 +12,8 @@ Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
 
 # Extraction Settings
-border_num=1         # 1:Tight (Start here), 2:Conservative
-ci_threshold=1.960  # 95% CI (1.960 SD), 97.5% CI (2.241 SD), 99% CI (2.576 SD)
+border_num=2         # 1:Tight (Start here), 2:Conservative
+SD_FACTOR_T2=1.960   # 95% CI (1.960 SD), 97.5% CI (2.241 SD), 99% CI (2.576 SD)
                      # Adjust to keep brain signal in the 2nd histogram layer.
 
 # --- Configuration & Global Logging ---
@@ -49,7 +49,6 @@ for SESSION in ${Subjlist} ; do
         if mri_synthstrip -i "${T1wFolder}/T2w_acpc_dc_restore.nii.gz" -o "${T1wFolder}/T2w_tmp_brain.nii.gz" \
             -m "${T1wFolder}/T2w_tmp_mask.nii.gz" -b ${border_num} --no-csf >> "$SUBJ_LOG" 2>&1; then
             
-            SD_FACTOR_T2=${ci_threshold}
             INPUT_BRAIN_T2="${T1wFolder}/T2w_tmp_brain.nii.gz"
             VOX_PRE_T2=$(fslstats "${INPUT_BRAIN_T2}" -V | awk '{print $1}')
             
