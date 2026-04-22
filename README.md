@@ -15,7 +15,7 @@ While `mri_synthstrip` is a powerful and flexible brain extraction tool, it can 
 ## Hardware Note
 
 Performance may vary depending on acquisition conditions.  
-For high-density coil data (e.g., 32-channel), consider using the hybrid approach (`t2log-hybrid`).
+For high-density coil acquisitions (e.g., 32-channel), increased T2-weighted signal instability may affect mask consistency.
 
 ---
 
