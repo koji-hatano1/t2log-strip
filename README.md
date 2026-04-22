@@ -2,8 +2,6 @@
 
 This tool provides robust T2-weighted brain extraction using FreeSurfer’s `mri_synthstrip`, enhanced with log-transformation and statistical thresholding.
 
-It stabilizes intensity distributions in T2w images, improving mask consistency in regions affected by susceptibility artifacts (e.g., OFC).
-
 ---
 
 ## Overview
