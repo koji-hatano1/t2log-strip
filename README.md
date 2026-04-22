@@ -139,5 +139,3 @@ Ensure the following are available in your `$PATH`:
 - FSL 6.0.7  
 - FreeSurfer 7.4.1 (`mri_synthstrip`)  
 - bc (GNU calculator)
-- **bc** (GNU calculator)
-
