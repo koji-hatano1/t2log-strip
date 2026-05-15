@@ -139,3 +139,7 @@ Ensure the following are available in your `$PATH`:
 - FSL 6.0.7  
 - FreeSurfer 7.4.1 (`mri_synthstrip`)  
 - bc (GNU calculator)
+
+## Citation
+
+Hatano, K. (2026). *t2log-strip* (Version 3.12), a T2w-based log-transformed masking tool [Software]. GitHub. https://github.com/koji-hatano1/t2log-strip
