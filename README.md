@@ -131,6 +131,7 @@ A summary CSV (`hss_t2ls_summary_*.csv`) is generated:
 
 ```bash
 ./fview_t2ls.sh [Subject_ID]
+```
 
 ## Prerequisites
 
