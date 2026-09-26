@@ -33,7 +33,7 @@ In the `# --- Configuration ---` section:
 
 ### 2. Fine-tuning via `SD_FACTOR_T2`
 
-Use the histogram in the subject log to adjust `SD_FACTOR_T2` (SD-based thresholding):
+Use intensity histograms and resulting masks from a small number of representative subjects to select an appropriate SD_FACTOR_T2 for the imaging protocol:
 
 - **1.960 (95%)**: standard starting point  
 - **2.241 (97.5%)**: intermediate  
@@ -65,21 +65,21 @@ chmod +x t2log-strip.sh
 ./t2log-strip.sh
 ```
 
-### 3. Review and Adjust
+### 3. Protocol-level review
 
-After execution:
+Before processing the full cohort:
 
-1. Check the histogram in `$SUBJ_LOG`
-2. Evaluate mask quality
-3. Adjust parameters if needed
-4. Re-run until optimal
+1. Run t2log-strip on a small number of representative subjects.
+2. Review the intensity histograms and resulting masks.
+3. Select border_num and SD_FACTOR_T2 for the imaging protocol.
+4. Apply the selected settings unchanged to all remaining subjects acquired with the same protocol.
 
 <img src="./images/report_sample.png" width="400">
 
 - **If the brain is over-stripped**: increase `SD_FACTOR_T2` (e.g., to 2.576) or set `border_num=2`
 - **If non-brain tissue remains**: decrease `SD_FACTOR_T2` (e.g., to 1.960) or set `border_num=1`
 
-> **Tip:** Prioritize avoiding over-stripping. Adjust parameters so that brain tissue remains stable within the second intensity cluster.
+> **Tip:** Prioritize avoiding over-stripping when selecting protocol-level parameters.
 
 ## Recovery
 
