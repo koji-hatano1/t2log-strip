@@ -12,16 +12,15 @@ While `mri_synthstrip` is a powerful and flexible brain extraction tool, it can 
 
 ---
 
-## Hardware Note
+## Protocol-specific parameter setting
 
-Performance may vary depending on acquisition conditions.  
-For high-density coil acquisitions (e.g., 32-channel), increased T2-weighted signal instability may affect mask consistency.
+Masking parameters are determined for each imaging protocol rather than optimized separately for individual subjects. For a new acquisition protocol, intensity histograms and resulting masks are inspected in a small number of representative subjects to identify appropriate values for border_num and SD_FACTOR_T2. Once selected, the same parameter settings are applied to all subjects acquired with that protocol.
+
+Differences in image contrast across acquisition protocols may therefore require separate parameter selection, while subject-by-subject tuning is not part of the intended workflow.
 
 ---
 
-## Optimization Workflow
-
-Parameters should be adjusted based on the histogram provided in each subject log.
+## Parameter selection workflow
 
 ### 1. Initial `border_num` Selection
 
