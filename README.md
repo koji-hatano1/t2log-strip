@@ -31,7 +31,7 @@ In the `# --- Configuration ---` section:
 
 ---
 
-### 2. Fine-tuning via `SD_FACTOR_T2`
+### 2. Protocol-level selection of SD_FACTOR_T2
 
 Use intensity histograms and resulting masks from a small number of representative subjects to select an appropriate SD_FACTOR_T2 for the imaging protocol:
 
