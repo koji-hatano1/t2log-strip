@@ -8,7 +8,7 @@ This tool provides robust T2-weighted brain extraction using FreeSurfer’s `mri
 
 While `mri_synthstrip` is a powerful and flexible brain extraction tool, it can produce unstable results on T2-weighted images due to high-intensity signals (fat/CSF) and low-intensity flow voids.
 
-**t2log-strip** addresses these issues by applying log-based standardization, enabling stable and reproducible skull stripping tailored for HCP-style T2w datasets.
+**t2log-strip** addresses these issues by applying log-based standardization, enabling controlled and reproducible T2w-based masking tailored for HCP-style datasets.
 
 ---
 
@@ -39,7 +39,7 @@ Use intensity histograms and resulting masks from a small number of representati
 - **2.241 (97.5%)**: intermediate  
 - **2.576 (99%)**: conservative (use if brain tissue is removed)
 
-👉 Goal: keep brain signal within the second intensity cluster.
+👉 Goal: preserve brain tissue while reducing residual non-brain signal.
 
 > **Tip:** prioritize avoiding over-stripping.
 
