@@ -55,7 +55,7 @@ Edit the configuration in `t2log-strip.sh`:
 # --- Configuration ---
 Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
-border_num=1
+border_num=2
 SD_FACTOR_T2=3
 ```
 ### 2. Execution
