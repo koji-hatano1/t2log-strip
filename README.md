@@ -14,7 +14,7 @@ The resulting mask is intended for FastSurfer-based T1w cortical reconstruction 
 
 ## Protocol-specific parameter setting
 
-Masking parameters are determined for each imaging protocol rather than optimized separately for individual subjects. For a new acquisition protocol, intensity histograms and resulting masks are inspected in a small number of representative subjects to identify appropriate values for border_num and SD_FACTOR_T2. Once selected, the same parameter settings are applied to all subjects acquired with that protocol.
+Masking parameters are determined for each imaging protocol rather than optimized separately for individual subjects. For a new acquisition protocol, intensity histograms and resulting masks are inspected in a small number of representative subjects to identify appropriate values for `BORDER_NUM` and `SD_FACTOR_T2`. Once selected, the same parameter settings are applied to all subjects acquired with that protocol.
 
 Differences in image contrast across acquisition protocols may therefore require separate parameter selection, while subject-by-subject tuning is not part of the intended workflow.
 
@@ -22,18 +22,18 @@ Differences in image contrast across acquisition protocols may therefore require
 
 ## Parameter selection workflow
 
-### 1. Initial `border_num` Selection
+### 1. Initial `BORDER_NUM` selection
 
 In the `# --- Configuration ---` section:
 
-- `border_num=2`: recommended default; provides conservative brain extraction
-- `border_num=1`: tighter extraction (use if additional removal of peripheral non-brain tissue is needed)
+- `BORDER_NUM=2`: recommended default; provides conservative brain extraction
+- `BORDER_NUM=1`: tighter extraction (use if additional removal of peripheral non-brain tissue is needed)
 
 ---
 
-### 2. Protocol-level selection of SD_FACTOR_T2
+### 2. Protocol-level selection of `SD_FACTOR_T2`
 
-Use intensity histograms and resulting masks from a small number of representative subjects to confirm an appropriate SD_FACTOR_T2 for the imaging protocol:
+Use intensity histograms and resulting masks from a small number of representative subjects to confirm an appropriate `SD_FACTOR_T2` for the imaging protocol:
 
 - **2 SD**: more aggressive refinement
 - **3 SD**: recommended default
@@ -41,7 +41,7 @@ Use intensity histograms and resulting masks from a small number of representati
 
 👉 Goal: preserve brain tissue while reducing residual non-brain signal.
 
-> **Tip:** prioritize avoiding over-stripping.
+> **Tip:** Prioritize avoiding over-stripping.
 
 ---
 
@@ -55,7 +55,7 @@ Edit the configuration in `t2log-strip.sh`:
 # --- Configuration ---
 Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
-border_num=2
+BORDER_NUM=2
 SD_FACTOR_T2=3
 ```
 ### 2. Execution
@@ -69,9 +69,9 @@ chmod +x t2log-strip.sh
 
 Before processing the full cohort:
 
-1. Run t2log-strip on a small number of representative subjects.
+1. Run `t2log-strip` on a small number of representative subjects.
 2. Review the intensity histograms and resulting masks.
-3. Confirm border_num and SD_FACTOR_T2 for the imaging protocol.
+3. Confirm `BORDER_NUM` and `SD_FACTOR_T2` for the imaging protocol.
 4. Apply the selected settings unchanged to all remaining subjects acquired with the same protocol.
 
 <img src="./images/report_sample.png" width="400">
