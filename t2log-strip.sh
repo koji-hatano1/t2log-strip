@@ -12,7 +12,7 @@ Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
 
 # --- Extraction and threshold settings ---
-border_num=2
+BORDER_NUM=2
 SD_FACTOR_T2=3
 
 # Reference:
@@ -61,7 +61,7 @@ for SESSION in ${Subjlist}; do
             -i "${T1wFolder}/T2w_acpc_dc_restore.nii.gz" \
             -o "${T1wFolder}/T2w_tmp_brain.nii.gz" \
             -m "${T1wFolder}/T2w_tmp_mask.nii.gz" \
-            -b "${border_num}" \
+            -b "${BORDER_NUM}" \
             --no-csf >> "$SUBJ_LOG" 2>&1; then
 
             INPUT_BRAIN_T2="${T1wFolder}/T2w_tmp_brain.nii.gz"
