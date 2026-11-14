@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # ===================================================================================================
-#  SCRIPT:    recover_t2ls_v311.sh
-#  PROJECT:   t2log-strip (Hatano Skull Stripping Method v3.11)
-#  STRATEGY:  Universal Recovery - Restore *_bet.nii.gz & Cleanup v3.11 Artifacts
+#  SCRIPT:    recover_t2ls.sh
+#  PROJECT:   t2log-strip (Hatano Skull Stripping Method)
+#  STRATEGY:  Universal Recovery - Restore *_bet.nii.gz & Cleanup Artifacts
 # ===================================================================================================
 
 # --- Configuration ---
@@ -11,12 +11,12 @@ Subjlist="001 002 003"
 BASE_PATH="/path/to/your/project"
 
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
-LOG_FILE="recovery_t2ls_v311_${TIMESTAMP}.log"
+LOG_FILE="recovery_t2ls_${TIMESTAMP}.log"
 
 # Function to output to both terminal and log file
 log_info() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] $1" | tee -a "$LOG_FILE"; }
 
-log_info "=== t2log-strip v3.11: Universal Recovery Process Started ==="
+log_info "=== t2log-strip: Universal Recovery Process Started ==="
 
 for SESSION in ${Subjlist} ; do
     log_info "------------------------------------------------------------"
@@ -43,7 +43,7 @@ for SESSION in ${Subjlist} ; do
         fi
     done
 
-    # --- Step 2: Cleanup v3.11 Intermediate Artifacts ---
+    # --- Step 2: Cleanup Intermediate Artifacts ---
     log_info "  Cleaning up temporary files for ${SESSION}..."
     # Cleanup SynthStrip and Log-Normal temporary files
     rm -f "${T1wFolder}/T2w_tmp_brain.nii.gz"

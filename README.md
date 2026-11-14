@@ -1,4 +1,4 @@
-# t2log-strip
+# t2log-strip v3.2
 
 This tool provides robust T2-weighted brain extraction using FreeSurfer’s `mri_synthstrip`, enhanced with log-transformation and statistical thresholding.
 
@@ -142,4 +142,4 @@ Ensure the following are available in your `$PATH`:
 
 ## Citation
 
-Hatano, K. (2026). *t2log-strip* (Version 3.12), a T2w-based log-transformed masking tool [Software]. GitHub. https://github.com/koji-hatano1/t2log-strip
+Hatano, K. (2026). *t2log-strip* (Version 3.2), a T2w-based log-transformed masking tool [Software]. GitHub. https://github.com/koji-hatano1/t2log-strip

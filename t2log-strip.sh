@@ -2,7 +2,7 @@
 
 # ===================================================================================================
 #  SCRIPT:    t2log-strip.sh
-#  METHOD:    Hatano Skull Stripping Method - T2w (v3.12)
+#  METHOD:    Hatano Skull Stripping Method - T2w (v3.2)
 #  STRATEGY:  T2w-based SynthStrip with Log-Normal Adaptive Thresholding
 #  GITHUB:    https://github.com/koji-hatano1/t2log-strip
 # ===================================================================================================
@@ -27,7 +27,7 @@ KEEP_TMP=0
 
 # --- Global logging ---
 TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
-GLOBAL_LOG="hss-t2ls_v3.12_global_${TIMESTAMP}.log"
+GLOBAL_LOG="hss-t2ls_v3.2_global_${TIMESTAMP}.log"
 
 # --- Logging functions ---
 log_info() {
@@ -40,11 +40,11 @@ log_err() {
     echo "$msg" | tee -a "$GLOBAL_LOG" "${SUBJ_LOG:-/dev/null}" "${SUBJ_ERR:-/dev/null}" >&2
 }
 
-log_info "=== Hatano Skull Stripping Method - T2w v3.12 Started ==="
+log_info "=== Hatano Skull Stripping Method - T2w v3.2 Started ==="
 
 for SESSION in ${Subjlist}; do
-    SUBJ_LOG="${BASE_PATH}/hss-t2ls_v3.12_${SESSION}_${TIMESTAMP}.log"
-    SUBJ_ERR="${BASE_PATH}/hss-t2ls_v3.12_${SESSION}_${TIMESTAMP}.err"
+    SUBJ_LOG="${BASE_PATH}/hss-t2ls_v3.2_${SESSION}_${TIMESTAMP}.log"
+    SUBJ_ERR="${BASE_PATH}/hss-t2ls_v3.2_${SESSION}_${TIMESTAMP}.err"
 
     log_info "-----------------------------------------------------------"
     log_info " Starting Session: ${SESSION}"
@@ -240,4 +240,4 @@ done
 log_info "---------------------------------------------------------------"
 log_info " [HSS Summary CSV Created] --> ${SUMMARY_FILE}"
 log_info "---------------------------------------------------------------"
-log_info "t2log-strip.sh: Hatano Skull Stripping Method v3.12 Complete."
+log_info "t2log-strip.sh: Hatano Skull Stripping Method v3.2 Complete."
